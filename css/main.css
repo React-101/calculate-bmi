@@ -4,7 +4,7 @@
 body {
   font-size: 40px;
   font-family: 'Harmattan', sans-serif;
-  direction: rtl;
+  direction: ltr;
   background-color: crimson;
 }
 
@@ -21,7 +21,7 @@ body {
   box-shadow: 0 0 20px -5px #555;
   max-width: 350px;
   padding: 20px;
-  text-align: right;
+  text-align: left;
   margin: 50px auto;
 }
 

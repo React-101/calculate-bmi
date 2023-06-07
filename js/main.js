@@ -20,7 +20,7 @@ form.addEventListener('submit', function (event) {
   let weight = document.getElementById('weight').value;
 
   if (height.trim() === '' || weight.trim() === '') {
-    alert('لطفاً همه ورودی‌ها را پر کنید!');
+    alert('Please fill all inputs!');
 
     return false;
   }
@@ -29,13 +29,13 @@ form.addEventListener('submit', function (event) {
   weight = parseInt(weight);
 
   if (isNaN(height) || isNaN(weight)) {
-    alert('قد و وزن باید عددی باشند');
+    alert('Height and Weight should be a number');
 
     return false;
   }
 
   if (weight < 0 || height < 0) {
-    alert('قد و وزن باید بزرگتر از صفر باشد.');
+    alert('Height and Weight should be grater than 0');
 
     return false;
   }
