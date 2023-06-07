@@ -1,44 +1,51 @@
-const colors = [
-  'crimson',
-  'deeppink',
-  'deepskyblue',
-  'gold',
-  'lightgrey',
-  'pink',
-  'orange',
-  'mediumturquoise',
-  'lemonchiffon',
-  'indigo',
-];
+function calculateBmi(height, weight) {
+  height = height / 100;
+  let result = weight / (height * height);
 
-function setColor(color) {
-  document.body.style.backgroundColor = color;
-  document.querySelector('#current-color').innerHTML = color;
-
-  const currentActiveButton = document.querySelector('button.active');
-
-  if (currentActiveButton !== null) {
-    currentActiveButton.classList.remove('active');
-  }
-
-  document.querySelector(`button[data-color=${color}]`).classList.add('active');
+  return result.toFixed(2);
 }
 
-colors.forEach(color => {
-  const button = document.createElement('button');
-  button.style.backgroundColor = color;
-  button.setAttribute('data-color', color);
+function clearResult() {
+  document.querySelector('#result').innerHTML = '';
+}
 
-  button.onclick = function () {
-    setColor(color);
+const form = document.querySelector('form');
+
+form.addEventListener('submit', function (event) {
+  console.log(event);
+  event.preventDefault();
+  clearResult();
+
+  let height = document.getElementById('height').value;
+  let weight = document.getElementById('weight').value;
+
+  if (height.trim() === '' || weight.trim() === '') {
+    alert('لطفاً همه ورودی‌ها را پر کنید!');
+
+    return false;
   }
 
-  document.querySelector('div.colors').appendChild(button);
+  height = parseInt(height);
+  weight = parseInt(weight);
+
+  if (isNaN(height) || isNaN(weight)) {
+    alert('قد و وزن باید عددی باشند');
+
+    return false;
+  }
+
+  if (weight < 0 || height < 0) {
+    alert('قد و وزن باید بزرگتر از صفر باشد.');
+
+    return false;
+  }
+
+  document.querySelector('#result').innerHTML = calculateBmi(height, weight);
 });
 
-document.body.onload = function () {
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  const color = colors[randomIndex];
 
-  setColor(color);
-}
+document.querySelector('input#height')
+  .addEventListener('keydown', clearResult);
+
+  document.querySelector('input#weight')
+  .addEventListener('keydown', clearResult);
